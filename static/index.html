@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi-रक्षा - Government of India</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #f97316;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #f97316;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #ea580c;
+        }
+        .status {
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            color: #059669;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .links {
+            text-align: center;
+        }
+        .api-info {
+            background-color: #f3f4f6;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 Digi-रक्षा</h1>
+            <h2>Disaster Management System</h2>
+            <p>An Initiative by the Government of India</p>
+        </div>
+        
+        <div class="status">
+            <strong>✅ Backend Server Status:</strong> Running successfully on http://localhost:8000
+        </div>
+        
+        <div class="links">
+            <a href="/static/main.html" class="button">📱 Launch Application</a>
+            <a href="/docs" class="button">📚 API Documentation</a>
+            <a href="/health" class="button">🔍 Health Check</a>
+        </div>
+        
+        <div class="api-info">
+            <h3>🚀 Quick Start Guide:</h3>
+            <ol>
+                <li><strong>Launch Application:</strong> Click "Launch Application" to access the mobile-friendly interface</li>
+                <li><strong>Register/Login:</strong> Create a new account or login with existing credentials</li>
+                <li><strong>Use Features:</strong> Access SOS alerts, report incidents, community posts, and missing persons registry</li>
+            </ol>
+            
+            <h3>🛠 Available API Endpoints:</h3>
+            <ul>
+                <li><strong>Authentication:</strong> /api/auth/register, /api/auth/login</li>
+                <li><strong>SOS Alerts:</strong> /api/sos/ (GET, POST), /api/sos/safe (POST)</li>
+                <li><strong>Incidents:</strong> /api/incidents/ (GET, POST)</li>
+                <li><strong>Missing Persons:</strong> /api/missing/ (GET, POST)</li>
+                <li><strong>Community:</strong> /api/community/ (GET, POST)</li>
+            </ul>
+            
+            <p><em>Note: This demo version uses mock data for demonstration purposes. In production, connect to your Supabase database by updating the .env file with your credentials.</em></p>
+        </div>
+    </div>
+</body>
+</html>

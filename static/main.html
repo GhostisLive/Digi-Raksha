@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi-रक्षा - Government of India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .page, .auth-page {
+            display: none;
+        }
+        .page.active, .auth-page.active {
+            display: block;
+        }
+        .sos-button {
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 1);
+            animation: pulse-red 2s infinite;
+        }
+        .safe-button {
+             box-shadow: 0 0 0 0 rgba(16, 185, 129, 1);
+             animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 20px rgba(239, 68, 68, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 20px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 2px dashed #cbd5e1;
+            display: inline-block;
+            padding: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+        .custom-file-upload:hover {
+            background-color: #f8fafc;
+            border-color: #f97316;
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+    <div id="auth-container" class="max-w-md mx-auto min-h-screen bg-white shadow-lg">
+        <header class="bg-orange-500 text-white p-4 text-center rounded-b-lg">
+            <div class="flex flex-col items-center">
+                                <img src="/static/logo.png" alt="Digi-रक्षा Logo" class="w-24 h-24 mr-2 object-contain">
+                <h1 class="text-2xl font-bold tracking-wider">Digi-रक्षा</h1>
+            </div>
+             <p class="text-orange-100 text-xs mt-1">An Initiative by the Government of India</p>
+        </header>
+
+        <div id="loginScreen" class="auth-page active p-6 sm:p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Welcome Back</h2>
+                <p class="text-gray-500">Log in to access your account.</p>
+            </div>
+            <div class="flex justify-center">
+                <form id="login-form" class="space-y-6 w-full max-w-sm">
+                    <div class="flex justify-center">
+                        <input type="text" id="login-gov-id" name="gov_id_number" placeholder="Government ID Number" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                    </div>
+                    <div class="flex justify-center">
+                        <input type="password" id="login-password" name="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="w-full bg-orange-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-300">Log In</button>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">Don't have an account? <a href="#" id="show-register-link" class="font-medium text-orange-600 hover:text-orange-500">Register Now</a></p>
+            </div>
+        </div>
+        
+        <div id="registrationScreen" class="auth-page p-6 sm:p-8">
+             <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Create Profile</h2>
+                <p class="text-gray-500">Create your secure profile to get started.</p>
+            </div>
+            <div class="flex justify-center">
+                <form id="registration-form" action="#" method="POST" class="space-y-6 w-full max-w-sm">
+                    <div class="grid grid-cols-1 gap-4">
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                        <input type="text" id="middle_name" name="middle_name" placeholder="Middle Name (Optional)" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4">
+                        <input type="text" id="city" name="city" placeholder="City" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                        <input type="tel" id="phone_number" name="phone_number" placeholder="Phone Number" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4">
+                        <select id="gov_id_type" name="gov_id_type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition bg-white text-gray-500 text-center">
+                            <option value="" disabled selected>Select ID Type</option>
+                            <option value="aadhaar">Aadhaar Card</option>
+                            <option value="pan">PAN Card</option>
+                            <option value="passport">Passport</option>
+                            <option value="driving-license">Driving License</option>
+                            <option value="voter-id">Voter ID Card</option>
+                        </select>
+                        <input type="text" id="gov_id_number" name="gov_id_number" placeholder="ID Number" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                    </div>
+
+                    <input type="password" id="password" name="password" placeholder="Create Password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition text-center">
+                    
+                    <div class="flex justify-center">
+                        <label for="photo-upload" class="custom-file-upload rounded-lg w-full">
+                            <div id="upload-prompt" class="flex flex-col items-center">
+                                <svg class="w-12 h-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                                <span class="mt-2 text-sm text-gray-600">Upload Your Photo</span>
+                            </div>
+                            <img id="image-preview" src="#" alt="Image Preview" class="hidden w-32 h-32 object-cover rounded-full mx-auto"/>
+                        </label>
+                    </div>
+                    <input id="photo-upload" name="photo" type="file" accept="image/*">
+
+                    <div class="flex justify-center">
+                        <button type="submit" class="w-full bg-orange-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-300">Create Profile</button>
+                    </div>
+                </form>
+            </div>
+            </form>
+             <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">Already have an account? <a href="#" id="show-login-link" class="font-medium text-orange-600 hover:text-orange-500">Log In</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="app-container" class="max-w-md mx-auto min-h-screen bg-white shadow-lg hidden">
+        <header class="bg-orange-500 text-white p-4 text-center sticky top-0 z-10 rounded-b-lg">
+             <div class="flex justify-between items-center">
+                 <div></div>
+                 <div class="flex flex-col items-center">
+                    <img src="/static/logo.png" alt="Digi-रक्षा Logo" class="w-20 h-20 mb-1 object-contain">
+                     <h1 id="app-title" class="text-2xl font-bold tracking-wider">Digi-रक्षा</h1>
+                 </div>
+                 <div class="w-10">
+                      <select id="languageSelector" class="bg-orange-500 border-0 text-white text-sm rounded-lg focus:ring-white focus:border-white block w-full p-1">
+                          <option value="en">EN</option>
+                          <option value="hi">HI</option>
+                          <option value="bn">BN</option>
+                          <option value="gu">GU</option>
+                          <option value="or">OR</option>
+                      </select>
+                 </div>
+            </div>
+            <p id="app-subtitle" class="text-orange-100 text-xs mt-1">An Initiative by the Government of India</p>
+        </header>
+
+        <main id="main-content" class="pb-20 bg-white">
+            <div id="homePage" class="page active p-6">
+                <div class="flex justify-around items-center my-8">
+                    <button id="safeButton" class="safe-button w-40 h-40 bg-green-500 hover:bg-green-600 text-white rounded-full flex flex-col items-center justify-center text-2xl font-bold transition-transform transform active:scale-95">
+                        <span class="block" data-translate="markMe">Mark Me</span>
+                        <span class="block" data-translate="safe">Safe</span>
+                    </button>
+                    <button id="sosButton" class="sos-button w-40 h-40 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-4xl font-bold transition-transform transform active:scale-95">
+                        SOS
+                    </button>
+                </div>
+                 <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+                    <h3 class="font-bold text-orange-600" data-translate="yourLocation">Your Location</h3>
+                    <p id="location-text" class="text-gray-600">Fetching location...</p>
+                    <div id="risk-assessment" class="mt-2">
+                        <h4 class="font-semibold text-gray-700" data-translate="potentialRisks">Potential Risks:</h4>
+                        <p id="risk-text" class="text-gray-600">Assessing risks...</p>
+                    </div>
+                </div>
+                <div id="reportIncidentBtn" class="bg-gray-50 border border-gray-200 p-4 rounded-lg mt-6 cursor-pointer hover:bg-gray-100">
+                    <h3 class="font-bold text-orange-600 mb-3" data-translate="reportIncident">Report Incident</h3>
+                    <div class="flex justify-around items-center text-center">
+                        <div class="text-gray-600">
+                            <svg class="w-10 h-10 mx-auto text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span class="text-xs font-medium" data-translate="takePhoto">Take Photo</span>
+                        </div>
+                         <div class="text-gray-600">
+                            <svg class="w-10 h-10 mx-auto text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                            <span class="text-xs font-medium" data-translate="recordAudio">Record Audio</span>
+                        </div>
+                         <div class="text-gray-600">
+                            <svg class="w-10 h-10 mx-auto text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span class="text-xs font-medium" data-translate="shareLocation">Share Location</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="communityPage" class="page p-6">
+                 <header class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-orange-600" data-translate="communityTitle">Community Feed</h2>
+                    <button id="newPostBtn" class="bg-orange-500 text-white font-bold py-2 px-4 rounded-lg text-sm" data-translate="newPost">New Post</button>
+                </header>
+                <div id="newPostFormContainer" class="hidden bg-gray-50 p-4 rounded-lg mb-6">
+                     <form id="newPostForm" class="space-y-3">
+                        <select id="postCategory" class="w-full p-2 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select Category...</option>
+                            <option value="Food">Need Food</option>
+                            <option value="Water">Need Water</option>
+                            <option value="Medical">Need Medical Help</option>
+                            <option value="Rescue">Need Rescue</option>
+                            <option value="Volunteer">Offering Help</option>
+                        </select>
+                        <textarea id="postMessage" placeholder="Enter details..." class="w-full p-2 border rounded-md" required></textarea>
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-md" data-translate="submitPost">Submit Post</button>
+                    </form>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-lg text-gray-800" data-translate="announcements">Announcements</h3>
+                     <div class="border-l-4 border-orange-500 pl-3">
+                        <p class="font-semibold">Relief camp set up at City Hall.</p>
+                        <p class="text-sm text-gray-500">Stay indoors. Cyclone approaching coast. - IMD</p>
+                    </div>
+                     <div class="border-l-4 border-orange-500 pl-3">
+                        <p class="font-semibold">Clean water distribution at Sector 5 park.</p>
+                        <p class="text-sm text-gray-500">Bring your own containers. - Local Authority</p>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-800 pt-4" data-translate="helpRequests">Help Requests</h3>
+                    <div id="communityPosts" class="space-y-3">
+                    </div>
+                </div>
+            </div>
+            <div id="alertsPage" class="page p-6">
+                 <header class="flex items-center mb-6">
+                    <h2 class="text-2xl font-bold text-orange-600" data-translate="alertsTitle">Alerts & Warnings</h2>
+                </header>
+                <div id="alerts-container" class="space-y-4">
+                    <!-- Alerts will be dynamically loaded here -->
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-orange-600 mb-3" data-translate="nearbySos">Nearby SOS Calls</h3>
+                    <div id="sos-calls-container" class="space-y-3">
+                    </div>
+                </div>
+            </div>
+            <div id="reportIncidentPage" class="page p-6">
+                <header class="flex items-center mb-6">
+                    <button id="backToHomeBtn" class="text-orange-500 mr-4">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    </button>
+                    <h2 class="text-2xl font-bold text-orange-600" data-translate="reportIncidentTitle">Report an Incident</h2>
+                </header>
+                <form id="reportIncidentForm" class="space-y-4" enctype="multipart/form-data">
+                    <select id="incidentType" class="w-full p-2 border border-gray-300 rounded-md" required>
+                        <option value="" disabled selected data-translate="incidentType">Select Incident Type...</option>
+                        <option value="Flood">Flood</option>
+                        <option value="Fire">Fire</option>
+                        <option value="Building Collapse">Building Collapse</option>
+                        <option value="Road Accident">Road Accident</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <textarea id="incidentDescription" placeholder="Describe the incident..." class="w-full p-2 border rounded-md" data-translate="incidentDescription" required></textarea>
+                     <div>
+                        <label for="incidentPhoto" class="block text-sm font-medium text-gray-700" data-translate="attachPhoto">Attach Photo</label>
+                        <input type="file" id="incidentPhoto" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"/>
+                        <div id="incidentImagePreview" class="mt-2 hidden">
+                            <img id="incidentPreviewImage" src="#" alt="Incident Preview" class="w-full h-32 object-cover rounded-md border">
+                        </div>
+                    </div>
+                    <input type="text" id="incidentLocation" placeholder="Location (e.g., street name, landmark)" class="w-full p-2 border rounded-md" data-translate="incidentLocation" required>
+                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-md" data-translate="submitIncident">Submit Incident Report</button>
+                </form>
+            </div>
+            <div id="missingPersonsPage" class="page">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xl font-bold text-orange-600" data-translate="familyStatus">Family Status</h3>
+                        <button id="addFamilyBtn" class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-orange-600 active:scale-95 transition-transform">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                        </button>
+                    </div>
+                    <div id="familyStatusList" class="space-y-2">
+                    </div>
+                </div>
+                 <header class="flex items-center p-6 pt-2 pb-0">
+                    <h2 class="text-2xl font-bold text-orange-600" data-translate="missingPersonsTitle">Missing Persons Registry</h2>
+                </header>
+                <div class="border-b border-gray-200">
+                    <nav class="flex -mb-px px-6" aria-label="Tabs">
+                        <button class="tab-btn active text-orange-600 border-orange-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="searchTab" data-translate="searchRegistry">
+                            Search Registry
+                        </button>
+                        <button class="tab-btn text-gray-500 hover:text-gray-700 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent" data-tab="reportTab" data-translate="reportMissing">
+                            Report Missing
+                        </button>
+                    </nav>
+                </div>
+                <div id="searchTab" class="tab-content active p-6">
+                    <input type="text" id="searchMissingInput" placeholder="Search by name..." class="w-full p-2 mb-4 border border-gray-300 rounded-md">
+                    <div id="missingPersonsList" class="space-y-4">
+                    </div>
+                </div>
+                <div id="reportTab" class="tab-content hidden p-6">
+                    <form id="reportMissingForm" class="space-y-4">
+                        <input type="text" id="missingName" placeholder="Full Name" class="w-full p-2 border rounded-md" required>
+                        <input type="number" id="missingAge" placeholder="Approximate Age" class="w-full p-2 border rounded-md" required>
+                        <input type="text" id="lastSeen" placeholder="Last Seen Location" class="w-full p-2 border rounded-md" required>
+                        <textarea id="missingDescription" placeholder="Description (clothing, etc.)" class="w-full p-2 border rounded-md" required></textarea>
+                        <div>
+                            <label for="missingPhoto" class="block text-sm font-medium text-gray-700">Photo</label>
+                            <input type="file" id="missingPhoto" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"/>
+                        </div>
+                        <input type="text" id="reporterContact" placeholder="Your Contact Info" class="w-full p-2 border rounded-md" required>
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-md" data-translate="submitReport">Submit Report</button>
+                    </form>
+                </div>
+            </div>
+            <div id="addFamilyMemberPage" class="page p-6">
+                <header class="flex items-center mb-6">
+                    <button id="backToMissingBtn" class="text-orange-500 mr-4">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    </button>
+                    <h2 class="text-2xl font-bold text-orange-600" data-translate="addFamilyTitle">Add Family Member</h2>
+                </header>
+                <form id="addFamilyMemberForm" class="space-y-4">
+                    <input type="text" id="newMemberName" placeholder="Full Name" data-translate-placeholder="newMemberNamePlaceholder" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500" required>
+                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-md" data-translate="addMemberBtn">Add Member</button>
+                </form>
+            </div>
+        </main>
+        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-orange-500 flex justify-around rounded-t-lg">
+            <button class="nav-btn flex-1 p-3 text-center text-white" data-page="homePage">
+                <svg class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <span class="text-xs" data-translate="navHome">Home</span>
+            </button>
+            <button class="nav-btn flex-1 p-3 text-center text-orange-200" data-page="alertsPage">
+                <svg class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                <span class="text-xs" data-translate="navAlerts">Alerts</span>
+            </button>
+            <button class="nav-btn flex-1 p-3 text-center text-orange-200" data-page="communityPage">
+                <svg class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                <span class="text-xs" data-translate="navCommunity">Community</span>
+            </button>
+            <button class="nav-btn flex-1 p-3 text-center text-orange-200" data-page="missingPersonsPage">
+                <svg class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z"/></svg>
+                <span class="text-xs" data-translate="navMissing">Missing</span>
+            </button>
+        </nav>
+    </div>
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-sm text-center">
+            <h3 id="modal-title" class="text-xl font-bold mb-4">Confirm Action</h3>
+            <p id="modal-text" class="text-gray-600 mb-6">Are you sure?</p>
+            <div id="modal-actions" class="flex justify-center space-x-4">
+                <button id="modal-cancel" class="px-6 py-2 bg-gray-200 rounded-md">Cancel</button>
+                <button id="modal-confirm" class="px-6 py-2 bg-orange-500 text-white rounded-md">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/main.js"></script>
+</body>
+</html>
